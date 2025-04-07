@@ -167,19 +167,19 @@ public class AHDCmonitor  extends DetectorMonitor {
         hist2d_wftime.setTitleX("wire number");
         hist2d_wftime.setTitle("< wftime >");
 
-        H1F hist1d_leadingEdgeTime = new H1F("leadingEdgeTime1D", "leadingEdgeTime1D", 100, 0, 2500);
+        H1F hist1d_leadingEdgeTime = new H1F("leadingEdgeTime1D", "leadingEdgeTime1D", 100, 0, 2400);
         hist1d_leadingEdgeTime.setTitleX("leadingEdgeTime (ns)");
         hist1d_leadingEdgeTime.setTitleY("count");
-        
-	H1F hist1d_timeOverThreshold = new H1F("timeOverThreshold1D", "timeOverThreshold1D", 100, 0, 2500);
+
+        H1F hist1d_timeOverThreshold = new H1F("timeOverThreshold1D", "timeOverThreshold1D", 100, 0, 2400);
         hist1d_timeOverThreshold.setTitleX("timeOverThreshold (ns)");
         hist1d_timeOverThreshold.setTitleY("count");
 
-        H1F hist1d_constantFractionTime = new H1F("constantFractionTime1D", "constantFractionTime1D", 100, 0, 2500);
+        H1F hist1d_constantFractionTime = new H1F("constantFractionTime1D", "constantFractionTime1D", 100, 0, 2400);
         hist1d_constantFractionTime.setTitleX("constantFractionTime (ns)");
         hist1d_constantFractionTime.setTitleY("count");
-        
-	H1F hist1d_wftime = new H1F("wftime1D", "wftime1D", 100, 0, 50);
+
+        H1F hist1d_wftime = new H1F("wftime1D", "wftime1D", 50, 0, 50);
         hist1d_wftime.setTitleX("wftime (bin)");
         hist1d_wftime.setTitleY("count");
         

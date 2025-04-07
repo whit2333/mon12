@@ -100,6 +100,7 @@ public class EventViewer implements IDataEventListener, DetectorListener, Action
     public final void initMonitors() {
         this.monitors.put("AHDC",        new AHDCmonitor("AHDC"));
         this.monitors.put("ATOF",        new ATOFmonitor("ATOF"));
+        this.monitors.put("ALERT",       new ALERTMonitor("ALERT"));
         this.monitors.put("BAND",        new BANDmonitor("BAND"));
         this.monitors.put("BMT",         new BMTmonitor("BMT"));
         this.monitors.put("BST",         new BSTmonitor("BST"));
@@ -289,7 +290,8 @@ public class EventViewer implements IDataEventListener, DetectorListener, Action
            this.createSummary("CD",2,2);
         }
         if(this.monitors.get("AHDC").isActive() ||
-           this.monitors.get("ATOF").isActive()) {
+           this.monitors.get("ATOF").isActive() ||
+           this.monitors.get("ALERT").isActive()) {
            this.createSummary("ALERT",1,2);
         }
         if(this.monitors.get("FTCAL").isActive() ||
