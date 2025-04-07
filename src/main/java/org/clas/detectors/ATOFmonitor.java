@@ -103,19 +103,20 @@ public class ATOFmonitor extends DetectorMonitor {
     sum.addDataSet(summary, 0);
     this.setDetectorSummary(sum); // special summary plots?
 
+    String run_number_stub = " [run:" + runNumber + "]";
 
     // -----------------------------------------------------------------------------------
-    H1F module_wedge_hits = new H1F("module_wedge_hits", "module wedge hits", 15, -0.5, 14.5);
+    H1F module_wedge_hits = new H1F("module_wedge_hits", "module wedge hits "+run_number_stub, 15, -0.5, 14.5);
     module_wedge_hits.setTitleX("Module");
     module_wedge_hits.setTitleY("ATOF wedge Hits");
     module_wedge_hits.setFillColor(36);
 
-    H1F module_bar_hits = new H1F("module_bar_hits", "module bar hits", 15, -0.5, 14.5);
+    H1F module_bar_hits = new H1F("module_bar_hits", "module bar hits"+run_number_stub, 15, -0.5, 14.5);
     module_bar_hits.setTitleX("Module");
     module_bar_hits.setTitleY("ATOF bar Hits");
     module_bar_hits.setFillColor(37);
 
-    H2F module_vs_z_wedge_hits = new H2F("module_vs_z_wedge_hits", "Module vs Z_{wedge}", 15, -0.5, 14.5,12,-0.5,11.5);
+    H2F module_vs_z_wedge_hits = new H2F("module_vs_z_wedge_hits", "Module vs Z_{wedge}"+run_number_stub, 15, -0.5, 14.5,12,-0.5,11.5);
     module_vs_z_wedge_hits.setTitleX("Module");
     module_vs_z_wedge_hits.setTitleY("comp+order");
     module_vs_z_wedge_hits.setTitle("Z vs module ");
@@ -129,26 +130,26 @@ public class ATOFmonitor extends DetectorMonitor {
     // -----------------------------------------------------------------------------------
 
     // Update globalwedge 
-    H1F globalwedge_wedge_hits = new H1F("globalwedge_wedge_hits", "globalwedge wedge hits", 60, -0.5, 59.5);
+    H1F globalwedge_wedge_hits = new H1F("globalwedge_wedge_hits", "globalwedge wedge hits"+run_number_stub, 60, -0.5, 59.5);
     globalwedge_wedge_hits.setTitleX("global wedge");
     globalwedge_wedge_hits.setTitleY("ATOF wedge Hits");
     globalwedge_wedge_hits.setFillColor(36);
 
-    H1F globalwedge_bar_hits = new H1F("globalwedge_bar_hits", "globalwedge bar hits", 60, -0.5, 59.5);
+    H1F globalwedge_bar_hits = new H1F("globalwedge_bar_hits", "globalwedge bar hits"+run_number_stub, 60, -0.5, 59.5);
     globalwedge_bar_hits.setTitleX("global wedge");
     globalwedge_bar_hits.setTitleY("ATOF bar Hits");
     globalwedge_bar_hits.setFillColor(37);
 
-    H2F globalwedge_wedge_vs_z_hits = new H2F("globalwedge_wedge_vs_z_hits", "globalwedge wedge hits", 60, -0.5, 59.5,10,-0.5,9.5);
+    H2F globalwedge_wedge_vs_z_hits = new H2F("globalwedge_wedge_vs_z_hits", "globalwedge wedge hits"+run_number_stub, 60, -0.5, 59.5,10,-0.5,9.5);
     globalwedge_wedge_vs_z_hits.setTitleX("global wedge");
     globalwedge_wedge_vs_z_hits.setTitleY("Z_{wedge}");
     globalwedge_wedge_vs_z_hits.setTitle("Z vs Global Wedge");
 
-    H2F globalwedge_all_vs_z_hits = new H2F("globalwedge_all_vs_z_hits", "globalwedge all hits", 60, -0.5, 59.5,12,-0.5,11.5);
+    H2F globalwedge_all_vs_z_hits = new H2F("globalwedge_all_vs_z_hits", "globalwedge all hits"+run_number_stub, 60, -0.5, 59.5,12,-0.5,11.5);
     globalwedge_wedge_vs_z_hits.setTitleX("global wedge");
     globalwedge_wedge_vs_z_hits.setTitleY("component + order");
 
-    H2F globalwedge_all_vs_z_occ = new H2F("globalwedge_all_vs_z_occ", "globalwedge occupancy", 60, -0.5, 59.5,12,-0.5,11.5);
+    H2F globalwedge_all_vs_z_occ = new H2F("globalwedge_all_vs_z_occ", "globalwedge occupancy"+run_number_stub, 60, -0.5, 59.5,12,-0.5,11.5);
     globalwedge_all_vs_z_occ.setTitleX("global wedge (phi)");
     globalwedge_all_vs_z_occ.setTitleY("component + order");
 
@@ -183,7 +184,7 @@ public class ATOFmonitor extends DetectorMonitor {
     tdc.setTitleY("Scintillator");
 
     // WedgeScalers Histogram
-    H2F wedgeScalers = new H2F("wedgeScalers", "Wedge Scalers", 60, -0.5, 59.5, 10, -0.5, 9.5);
+    H2F wedgeScalers = new H2F("wedgeScalers", "Wedge Scalers"+run_number_stub, 60, -0.5, 59.5, 10, -0.5, 9.5);
     wedgeScalers.setTitleX("Wedge Row (Azimuth)");
     wedgeScalers.setTitleY("Wedge Column (z)");
     wedgeScalers.setTitle("Wedge Scalers");
@@ -191,7 +192,7 @@ public class ATOFmonitor extends DetectorMonitor {
     // wedgeScalers.setOptStat(0); // Disable statistics box
 
     // BarScalers Histogram
-    H2F barScalers = new H2F("barScalers", "Bar Scalers", 60, -0.5, 59.5, 2, -0.5, 1.5);
+    H2F barScalers = new H2F("barScalers", "Bar Scalers"+run_number_stub, 60, -0.5, 59.5, 2, -0.5, 1.5);
     barScalers.setTitleX("Bar Row (Azimuth)");
     barScalers.setTitleY("Bar End (z)");
     barScalers.setTitle("Bar Scalers");
@@ -202,10 +203,10 @@ public class ATOFmonitor extends DetectorMonitor {
     DataGroup wedgeTDCGroup = new DataGroup();
     for (int sector = 0; sector < 15; sector++) {
       String histName = "wedgeTDC_sector_" + sector;
-      H2F wedgeTDC = new H2F(histName, "Wedge TDC Sector " + sector, 100, 0, 2000,40,-0.5,39.5);
+      H2F wedgeTDC = new H2F(histName, "Wedge TDC Sector " + sector+run_number_stub, 250, 0, 500,40,-0.5,39.5);
       wedgeTDC.setTitleX("TDC [ns]");
       wedgeTDC.setTitleY("wedge_i");
-      wedgeTDC.setTitle("M" + sector + " Wedge TDCs");
+      wedgeTDC.setTitle("M" + sector + " Wedge TDCs"+run_number_stub);
       // Uncomment if you have a method to disable statistics box
       // wedgeTDC.setOptStat(0);
       wedgeTDCGroup.addDataSet(wedgeTDC, sector);
@@ -215,10 +216,10 @@ public class ATOFmonitor extends DetectorMonitor {
     DataGroup barTDCGroup = new DataGroup();
     for (int sector = 0; sector < 15; sector++) {
       String histName = "barTDC_sector_" + sector;
-      H2F barTDC = new H2F(histName, "Bar TDC Sector " + sector, 100, 0, 2000,8,-0.5,7.5);
+      H2F barTDC = new H2F(histName, "Bar TDC Sector " + sector+run_number_stub, 250, 0, 500,8,-0.5,7.5);
       barTDC.setTitleX("TDC [ns]");
       barTDC.setTitleY("bar_i");
-      barTDC.setTitle("M" + sector + " Bar TDCs");
+      barTDC.setTitle("M" + sector + " Bar TDCs"+run_number_stub);
       // Uncomment if you have a method to disable statistics box
       // barTDC.setOptStat(0);
       barTDCGroup.addDataSet(barTDC, sector);
@@ -228,10 +229,10 @@ public class ATOFmonitor extends DetectorMonitor {
     DataGroup wedgeToTGroup = new DataGroup();
     for (int sector = 0; sector < 15; sector++) {
       String histName = "wedgeToT_sector_" + sector;
-      H2F wedgeToT = new H2F(histName, "Wedge ToT Sector " + sector, 100, 0, 2000,40,-0.5,39.5);
+      H2F wedgeToT = new H2F(histName, "Wedge ToT Sector " + sector, 200, 0, 200,40,-0.5,39.5);
       wedgeToT.setTitleX("ToT [ns]");
       wedgeToT.setTitleY("wedge_i");
-      wedgeToT.setTitle("M" + sector + " Wedge ToTs");
+      wedgeToT.setTitle("M" + sector + " Wedge ToTs"+run_number_stub);
       // Uncomment if you have a method to disable statistics box
       // wedgeToT.setOptStat(0);
       wedgeToTGroup.addDataSet(wedgeToT, sector);
@@ -241,10 +242,10 @@ public class ATOFmonitor extends DetectorMonitor {
     DataGroup barToTGroup = new DataGroup();
     for (int sector = 0; sector < 15; sector++) {
       String histName = "barToT_sector_" + sector;
-      H2F barToT = new H2F(histName, "Bar ToT Sector " + sector, 100, 0, 200,8,-0.5,7.5);
+      H2F barToT = new H2F(histName, "Bar ToT Sector " + sector, 200, 0, 200,8,-0.5,7.5);
       barToT.setTitleX("ToT [ns]");
       barToT.setTitleY("bar_i");
-      barToT.setTitle("M" + sector + " Bar ToTs");
+      barToT.setTitle("M" + sector + " Bar ToTs"+run_number_stub);
       // Uncomment if you have a method to disable statistics box
       // barToT.setOptStat(0);
       barToTGroup.addDataSet(barToT, sector);
@@ -258,23 +259,23 @@ public class ATOFmonitor extends DetectorMonitor {
     barSum.setFillColor(46);
     // Uncomment if you have a method to disable statistics box
     // barSum.setOptStat(0);
-    float barsumtime_peak = 36000*tdc_bin_time; // peak location used to center the histogram binning:
-    H1F barSumTime = new H1F("barSumTime", "Bar Sum Time", 200, 0,4000);//barsum_peak*tdc_bin_time-20000*tdc_bin_time, barsum_peak*tdc_bin_time+20000*tdc_bin_time); // Assuming sum range
-    barSumTime.setTitleX("Sum of Times (Order0 + Order1)");
+    float barsumtime_peak = 2*36000*tdc_bin_time; // peak location used to center the histogram binning:
+    H1F barSumTime = new H1F("barSumTime", "Bar Sum Time "+run_number_stub, 200, 0,2000);//barsum_peak*tdc_bin_time-20000*tdc_bin_time, barsum_peak*tdc_bin_time+20000*tdc_bin_time); // Assuming sum range
+    barSumTime.setTitleX("Sum of Times (Order0 + Order1) [ns]");
     barSumTime.setTitleY("Counts");
     barSumTime.setFillColor(46);
 
-    H1F barDiff = new H1F("barDiff", "Bar TDC Difference", 200, -20000, 20000); // Assuming difference range
+    H1F barDiff = new H1F("barDiff", "Bar TDC Difference"+run_number_stub, 200, -20000, 20000); // Assuming difference range
     barDiff.setTitleX("Difference of TDCs (Order1 - Order0)");
     barDiff.setTitleY("Counts");
     barDiff.setFillColor(38);
-    H1F barDiff2 = new H1F("barDiff2", "Bar TDC Diff per 1k events", 200, -20000, 20000); // Assuming difference range
+    H1F barDiff2 = new H1F("barDiff2", "Bar TDC Diff per 1k events"+run_number_stub, 200, -20000, 20000); // Assuming difference range
     barDiff2.setTitleX("Difference of TDCs (Order1 - Order0)");
     barDiff2.setTitleY("Counts/1k events");
     barDiff2.setFillColor(38);
 
-    H1F barDiffTime = new H1F("barDiffTime", "Bar TDC Difference", 200, -5, 7);
-    barDiffTime.setTitleX("Difference of Times (Order1 - Order0)");
+    H1F barDiffTime = new H1F("barDiffTime", "Bar TDC Difference"+run_number_stub, 200, -5, 7);
+    barDiffTime.setTitleX("Difference of Times (Order1 - Order0) [ns]");
     barDiffTime.setTitleY("Counts");
     barDiffTime.setFillColor(38);
     // Uncomment if you have a method to disable statistics box
