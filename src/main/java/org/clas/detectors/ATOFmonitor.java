@@ -28,7 +28,7 @@ public class ATOFmonitor extends DetectorMonitor {
   public ATOFmonitor(String name) {
     super(name);
     // Add new tabs: "WedgeTDC", "BarTDC", "BarSumDiff"
-    this.setDetectorTabNames("Module","Global Wedge", "Occupancy", "Wedge Hits", "Bar Hits", "Wedge TDCs", "Bar TDCs", "Bar Sum and Diff","Wedge ToTs", "Bar ToTs" );
+    this.setDetectorTabNames("Module","Global Wedge", "Occupancy", "Wedge TDCs", "Bar TDCs", "Bar Sum and Diff","Wedge ToTs", "Bar ToTs" );
     this.init(false);
 
     // Initialize temporary storage maps
@@ -56,15 +56,15 @@ public class ATOFmonitor extends DetectorMonitor {
     this.getDetectorCanvas().getCanvas("Occupancy").setGridX(false);
     this.getDetectorCanvas().getCanvas("Occupancy").setGridY(false);
 
-    // WedgeScalers Canvas
-    this.getDetectorCanvas().getCanvas("Wedge Hits").divide(1, 1);
-    this.getDetectorCanvas().getCanvas("Wedge Hits").setGridX(false);
-    this.getDetectorCanvas().getCanvas("Wedge Hits").setGridY(false);
+    //// WedgeScalers Canvas
+    //this.getDetectorCanvas().getCanvas("Wedge Hits").divide(1, 1);
+    //this.getDetectorCanvas().getCanvas("Wedge Hits").setGridX(false);
+    //this.getDetectorCanvas().getCanvas("Wedge Hits").setGridY(false);
 
-    // BarScalers Canvas
-    this.getDetectorCanvas().getCanvas("Bar Hits").divide(1, 1);
-    this.getDetectorCanvas().getCanvas("Bar Hits").setGridX(false);
-    this.getDetectorCanvas().getCanvas("Bar Hits").setGridY(false);
+    //// BarScalers Canvas
+    //this.getDetectorCanvas().getCanvas("Bar Hits").divide(1, 1);
+    //this.getDetectorCanvas().getCanvas("Bar Hits").setGridX(false);
+    //this.getDetectorCanvas().getCanvas("Bar Hits").setGridY(false);
 
     // WedgeTDC Canvas (3x5 grid for sectors 0-14)
     this.getDetectorCanvas().getCanvas("Wedge TDCs").divide(3, 5);
@@ -203,7 +203,7 @@ public class ATOFmonitor extends DetectorMonitor {
     DataGroup wedgeTDCGroup = new DataGroup();
     for (int sector = 0; sector < 15; sector++) {
       String histName = "wedgeTDC_sector_" + sector;
-      H2F wedgeTDC = new H2F(histName, "Wedge TDC Sector " + sector+run_number_stub, 250, 0, 500,40,-0.5,39.5);
+      H2F wedgeTDC = new H2F(histName, "Wedge TDC Sector " + sector+run_number_stub, 100, 150, 250,40,-0.5,39.5);
       wedgeTDC.setTitleX("TDC [ns]");
       wedgeTDC.setTitleY("wedge_i");
       wedgeTDC.setTitle("M" + sector + " Wedge TDCs"+run_number_stub);
@@ -216,7 +216,7 @@ public class ATOFmonitor extends DetectorMonitor {
     DataGroup barTDCGroup = new DataGroup();
     for (int sector = 0; sector < 15; sector++) {
       String histName = "barTDC_sector_" + sector;
-      H2F barTDC = new H2F(histName, "Bar TDC Sector " + sector+run_number_stub, 250, 0, 500,8,-0.5,7.5);
+      H2F barTDC = new H2F(histName, "Bar TDC Sector " + sector+run_number_stub, 100, 150, 250,8,-0.5,7.5);
       barTDC.setTitleX("TDC [ns]");
       barTDC.setTitleY("bar_i");
       barTDC.setTitle("M" + sector + " Bar TDCs"+run_number_stub);
@@ -357,17 +357,17 @@ public class ATOFmonitor extends DetectorMonitor {
     //this.getDetectorCanvas().getCanvas("tdc").getPad(0).getAxisZ().setLog(getLogZ());
     //this.getDetectorCanvas().getCanvas("tdc").draw(this.getDataGroup().getItem(1, 0, 0).getH2F("tdc"));
 
-    // Plot WedgeScalers
-    this.getDetectorCanvas().getCanvas("Wedge Hits").cd(0);
-    this.getDetectorCanvas().getCanvas("Wedge Hits").getPad(0).setPalette("kCool");
-    this.getDetectorCanvas().getCanvas("Wedge Hits").draw(this.getDataGroup().getItem(1, 0, 0).getH2F("wedgeScalers"));
-    this.getDetectorCanvas().getCanvas("Wedge Hits").update();
+    //// Plot WedgeScalers
+    //this.getDetectorCanvas().getCanvas("Wedge Hits").cd(0);
+    //this.getDetectorCanvas().getCanvas("Wedge Hits").getPad(0).setPalette("kCool");
+    //this.getDetectorCanvas().getCanvas("Wedge Hits").draw(this.getDataGroup().getItem(1, 0, 0).getH2F("wedgeScalers"));
+    //this.getDetectorCanvas().getCanvas("Wedge Hits").update();
 
-    // Plot BarScalers
-    this.getDetectorCanvas().getCanvas("Bar Hits").cd(0);
-    this.getDetectorCanvas().getCanvas("Bar Hits").getPad(0).setPalette("kCool");
-    this.getDetectorCanvas().getCanvas("Bar Hits").draw(this.getDataGroup().getItem(1, 0, 0).getH2F("barScalers"));
-    this.getDetectorCanvas().getCanvas("Bar Hits").update();
+    //// Plot BarScalers
+    //this.getDetectorCanvas().getCanvas("Bar Hits").cd(0);
+    //this.getDetectorCanvas().getCanvas("Bar Hits").getPad(0).setPalette("kCool");
+    //this.getDetectorCanvas().getCanvas("Bar Hits").draw(this.getDataGroup().getItem(1, 0, 0).getH2F("barScalers"));
+    //this.getDetectorCanvas().getCanvas("Bar Hits").update();
 
     // Plot WedgeTDC Histograms
     DataGroup wedgeTDCGroup = this.getDataGroup().getItem(4, 0, 0);

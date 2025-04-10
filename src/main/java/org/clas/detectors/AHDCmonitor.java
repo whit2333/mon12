@@ -15,7 +15,8 @@ import org.jlab.io.base.DataEvent;
  */
 public class AHDCmonitor  extends DetectorMonitor {
 
-    static final int[] layer_wires  = {94,112,112,144,144,174,174,198};
+    static final int[] layer_wires  = {94/2,112/2,112/2,144/2,144/2,174/2,174/2,198/2};
+    static final int[] layer_radius  = {30+2*1 ,30+2*4,30+2*6,30+2*9,30+2*11,30+2*14,30+2*16,30+2*19};
 
     public AHDCmonitor(String name) {
         super(name);
@@ -99,8 +100,8 @@ public class AHDCmonitor  extends DetectorMonitor {
         this.getDetectorCanvas().getCanvas("time1D").divide(2, 3);
         this.getDetectorCanvas().getCanvas("time1D").setGridX(false);
         this.getDetectorCanvas().getCanvas("time1D").setGridY(false);
-        
-	this.getDetectorCanvas().getCanvas("Occupancy").divide(2, 3);
+
+        this.getDetectorCanvas().getCanvas("Occupancy").divide(2, 3);
         this.getDetectorCanvas().getCanvas("Occupancy").setGridX(false);
         this.getDetectorCanvas().getCanvas("Occupancy").setGridY(false);
 

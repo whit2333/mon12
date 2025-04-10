@@ -6,12 +6,17 @@ then
   exit -1
 fi
 
-mvn clean
-mvn install 
 coat_version=$(sed -n -e '/<dependencies>/,/<\/dependencies>/p' pom.xml | tr -d '\n\t '  | xmllint --xpath "//dependencies/dependency[groupId/text()='org.jlab.coat']/version/text()" - )
 echo ${coat_version}
+
+mvn clean
+mvn install 
 ls -lrth $CLAS12DIR/lib/clas/coat-libs-*-SNAPSHOT.jar
 ls -lrth  ~/.m2/repository/org/jlab/coat/coat-libs/
 
+ls -lrth $CLAS12DIR/lib/clas/coat-libs-*-SNAPSHOT.jar
+
 cp $CLAS12DIR/lib/clas/coat-libs-*-SNAPSHOT.jar \
   ~/.m2/repository/org/jlab/coat/coat-libs/${coat_version}/coat-libs-${coat_version}.jar
+
+ls -lrth ~/.m2/repository/org/jlab/coat/coat-libs/${coat_version}/coat-libs-${coat_version}.jar

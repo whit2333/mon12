@@ -101,9 +101,12 @@ public class FCUPmonitor extends DetectorMonitor {
 
         fcupConfig = this.getCcdb().getConstants(runNumber, "/runcontrol/fcup");
         double fcup_slope  = fcupConfig.getDoubleValue("slope",0,0,0);
-        double fcup_offset = fcupConfig.getDoubleValue("slope",0,0,0);
+        double fcup_offset = fcupConfig.getDoubleValue("offset",0,0,0);
         double fcup_atten  = fcupConfig.getIntValue("atten",0,0,0);
-
+       
+        //System.out.println("fcup_slope  = " + fcup_slope );
+        //System.out.println("fcup_offset = " + fcup_offset);
+        //System.out.println("fcup_atten  = " + fcup_atten );
 
         if(scaler!=null) {
     //   config.show();
