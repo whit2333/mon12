@@ -234,7 +234,7 @@ public class ATOFmonitor extends DetectorMonitor {
     DataGroup wedgeToTGroup = new DataGroup();
     for (int sector = 0; sector < 15; sector++) {
       String histName = "wedgeToT_sector_" + sector;
-      H2F wedgeToT = new H2F(histName, "Wedge ToT Sector " + sector, 200, 0, 200,40,-0.5,39.5);
+      H2F wedgeToT = new H2F(histName, "Wedge ToT Sector " + sector, 100, 0, 200,40,-0.5,39.5);
       wedgeToT.setTitleX("ToT [ns]");
       wedgeToT.setTitleY("wedge_i");
       wedgeToT.setTitle("M" + sector + " Wedge ToTs"+run_number_stub);
@@ -272,7 +272,7 @@ public class ATOFmonitor extends DetectorMonitor {
     }
 
     // BarSumDiff Histograms
-    int barsum_peak = 36000; // peak location used to center the histogram binning:
+    int barsum_peak = 24000; // peak location used to center the histogram binning:
     H1F barSum = new H1F("barSum", "Bar TDC Sum", 200, barsum_peak-20000, barsum_peak+20000); // Assuming sum range
     barSum.setTitleX("Sum of TDCs (Order0 + Order1)");
     barSum.setTitleY("Counts");
