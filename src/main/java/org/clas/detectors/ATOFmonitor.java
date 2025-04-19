@@ -28,7 +28,7 @@ public class ATOFmonitor extends DetectorMonitor {
   public ATOFmonitor(String name) {
     super(name);
     // Add new tabs: "WedgeTDC", "BarTDC", "BarSumDiff"
-    this.setDetectorTabNames("Module","Global Wedge", "Occupancy", "Wedge TDCs", "Bar TDCs", "Bar Sum and Diff","Wedge ToTs", "Bar ToTs" );
+    this.setDetectorTabNames("Module","Global Wedge", "Occupancy", "Wedge TDCs", "Bar TDCs", "Bar Sum and Diff","Wedge ToTs", "Bar ToTs", "Bar TW" );
     this.init(false);
 
     // Initialize temporary storage maps
@@ -90,6 +90,11 @@ public class ATOFmonitor extends DetectorMonitor {
     this.getDetectorCanvas().getCanvas("Bar ToTs").divide(3, 5);
     this.getDetectorCanvas().getCanvas("Bar ToTs").setGridX(false);
     this.getDetectorCanvas().getCanvas("Bar ToTs").setGridY(false);
+
+    // BarTDC Canvas (3x5 grid for sectors 0-14)
+    this.getDetectorCanvas().getCanvas("Bar TW").divide(4, 2);
+    this.getDetectorCanvas().getCanvas("Bar TW").setGridX(false);
+    this.getDetectorCanvas().getCanvas("Bar TW").setGridY(false);
 
     // Update summary histogram
     H1F summary = new H1F("summary", "summary", 15, -0.5, 14.5);
@@ -251,6 +256,21 @@ public class ATOFmonitor extends DetectorMonitor {
       barToTGroup.addDataSet(barToT, sector);
     }
 
+    // BarToT Histograms (3x5 grid for sectors 0-14)
+    DataGroup barTWGroup = new DataGroup();
+    for (int sector = 0; sector < 15; sector++) {
+        for (int chan = 0; chan < 8; chan++) {
+            String histName = "barTW_sector_" + sector +"_ch"+chan;
+            H2F barTW = new H2F(histName, "Bar TW Sector " + sector +"_ch"+chan,  200, 0, 200, 100, 150, 250);
+            barTW.setTitleX("ToT [ns]");
+            barTW.setTitleY("TDC [ns]");
+            barTW.setTitle("M" + sector + " ch" + chan + " Bar TW"+run_number_stub);
+            // Uncomment if you have a method to disable statistics box
+            // barToT.setOptStat(0);
+            barTWGroup.addDataSet(barTW, sector*15+chan );
+        }
+    }
+
     // BarSumDiff Histograms
     int barsum_peak = 36000; // peak location used to center the histogram binning:
     H1F barSum = new H1F("barSum", "Bar TDC Sum", 200, barsum_peak-20000, barsum_peak+20000); // Assuming sum range
@@ -296,6 +316,7 @@ public class ATOFmonitor extends DetectorMonitor {
     this.getDataGroup().add(barTDCGroup, 5, 0, 0);   // Tab index 5: "BarTDC"
     this.getDataGroup().add(wedgeToTGroup, 4, 1, 0); 
     this.getDataGroup().add(barToTGroup, 5, 1, 0);   
+    this.getDataGroup().add(barTWGroup, 7, 0, 0);   
 
     DataGroup barSumDiffGroup = new DataGroup();
     barSumDiffGroup.addDataSet(barSum, 0);
@@ -445,6 +466,20 @@ public class ATOFmonitor extends DetectorMonitor {
     }
     this.getDetectorCanvas().getCanvas("Bar ToTs").update();
 
+    // Plot BarToT Histograms
+    DataGroup barTWGroup = this.getDataGroup().getItem(7, 0, 0);
+    for (int sector = 0; sector < 1; sector++) {
+        for (int chan = 0; chan < 8; chan++) {
+            String TWhistName = "barTW_sector_" + sector +"_ch"+ chan;
+            this.getDetectorCanvas().getCanvas("Bar TW").cd(chan);
+            this.getDetectorCanvas().getCanvas("Bar TW").getPad(chan).setPalette("kCool");
+            H2F barTW = barTWGroup.getH2F(TWhistName);
+            this.getDetectorCanvas().getCanvas("Bar TW").draw(barTW);
+            //this.getDetectorCanvas().getCanvas("Bar TWs").getPad(sector).getAxisY().setLog(true);
+        }
+    }
+    this.getDetectorCanvas().getCanvas("Bar TW").update();
+
 
     // Update detector view
     this.getDetectorView().getView().repaint();
@@ -475,6 +510,7 @@ public class ATOFmonitor extends DetectorMonitor {
         //      " TDC = " + tdc + " ToT = " + tot);
         //}
         if (tot > 0) {
+
           int wire = (layer - 1) * 100 + comp;
           this.getDataGroup().getItem(1, 0, 0).getH2F("occTDC").fill(comp, layer);
           this.getDataGroup().getItem(1, 0, 0).getH1F("occTDC1D").fill(wire);
@@ -500,6 +536,7 @@ public class ATOFmonitor extends DetectorMonitor {
 
 
 
+
           int xbin = sector * 4 + layer ;
           // Fill Wedge Scalers histogram
           if (comp >= 0 && comp <= 9) {
@@ -517,6 +554,12 @@ public class ATOFmonitor extends DetectorMonitor {
           // Fill Bar Scalers histogram
           else if (comp == 10) {
             this.getDataGroup().getItem(1, 0, 0).getH2F("barScalers").fill(xbin, order);
+
+            int chan = (order*4+comp);
+
+            String TWhistName = "barTW_sector_" + sector +"_ch"+ chan;
+            this.getDataGroup().getItem(7, 0, 0).getH2F(TWhistName).fill(tot * tdc_bin_time, tdc * tdc_bin_time);
+
             // Fill Bar TDC histogram
             DataGroup barTDCGroup = this.getDataGroup().getItem(5, 0, 0);
             DataGroup barToTGroup = this.getDataGroup().getItem(5, 1, 0);
