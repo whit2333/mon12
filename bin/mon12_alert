@@ -1,0 +1,14 @@
+#!/bin/bash
+
+dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+#:DC:ECAL:FTCAL:FTHODO:FTOF:FCUP:HTCC:LTCC:RF:HEL:Trigger:TimeJitter
+$dir/mon12 \
+    -tabs "AHDC:ATOF:ALERT:CND:CTOF"\
+    -trigger 0x0 \
+    -logbook HBALERT \
+    -ethost clondaq7 \
+    -etip 129.57.167.20 \
+    -etsession /et/clastest7 \
+    $* 
+#| sed -n 's/[bank]./\1/p'
+
